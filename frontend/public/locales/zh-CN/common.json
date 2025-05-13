@@ -1,0 +1,10 @@
+{
+  "inputNotEmpty": "输入的内容不能为空",
+  "superSearch": {
+    "empty": "没有数据",
+    "btnSearch": "搜索...",
+    "search": "搜索",
+    "chat": "聊天",
+    "document": "文档"
+  }
+}

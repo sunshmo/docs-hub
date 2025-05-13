@@ -1,0 +1,28 @@
+{
+  "$schema": "../gen/schemas/mobile-schema.json",
+  "identifier": "mobile-capability",
+  "windows": ["main"],
+  "platforms": ["iOS", "android"],
+  "permissions": [
+    "nfc:allow-scan",
+    "biometric:allow-authenticate",
+    "barcode-scanner:allow-scan",
+    {
+      "identifier": "http:default",
+      "allow": [
+        { "url": "http://**" },
+        { "url": "https://**" }
+      ]
+    }
+  ],
+  "tauri": {
+    "allowlist": {
+      "http": {
+        "all": true,
+        "request": true,
+        "scope": ["http://**", "https://**"]
+      }
+    }
+  },
+  "capabilities": []
+}

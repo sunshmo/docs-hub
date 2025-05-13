@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "bundler" // or "node" if needed
+  },
+  "include": ["src"]
+}

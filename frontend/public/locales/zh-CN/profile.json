@@ -1,0 +1,20 @@
+{
+  "tabProfile": "个人资料",
+  "tabSettings": "设置",
+  "profileTitle": "个人资料设置",
+  "passwordTitle": "密码",
+  "description": "更新您的账户信息",
+  "username": "用户名",
+  "email": "电子邮箱",
+  "telephone": "电话号码",
+  "changePasswordTip": "修改您的账户密码",
+  "confirmPassword": "确认密码",
+  "changePassword": "修改密码",
+  "passwordEmpty": "密码不能为空",
+  "passwordConfirmEmpty": "确认密码不能为空",
+  "passwordNotMatch": "密码不匹配",
+  "passwordLimitMsg": "密码长度至少8个字符",
+  "userNotFound": "用户不存在",
+  "passwordUpdatedSuccess": "密码修改成功",
+  "passwordUpdatedFailed": "密码修改失败"
+}

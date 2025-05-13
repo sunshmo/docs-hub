@@ -1,0 +1,20 @@
+{
+  "tabProfile": "Profile",
+  "tabSettings": "Settings",
+  "profileTitle": "Profile Settings",
+  "passwordTitle": "Password",
+  "description": "Update your account information",
+  "username": "Username",
+  "email": "Email",
+  "telephone": "Telephone",
+  "changePasswordTip": "Change your account password",
+  "confirmPassword": "Confirm password",
+  "changePassword": "Change Password",
+  "passwordEmpty": "Password doesn't empty",
+  "passwordConfirmEmpty": "Confirm password doesn't empty",
+  "passwordNotMatch": "Password doesn't match",
+  "passwordLimitMsg": "Password must be at least 8 characters",
+  "userNotFound": "User not found",
+  "passwordUpdatedSuccess": "Password changed successfully",
+  "passwordUpdatedFailed": "Password changed failed"
+}

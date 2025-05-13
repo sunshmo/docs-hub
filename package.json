@@ -1,0 +1,16 @@
+{
+  "name": "docs-hub",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter docs-hub-* run dev",
+    "build": "pnpm --filter docs-hub-* run build",
+    "start": "pnpm --filter docs-hub-* run start",
+    "format-view": "pnpm --filter docs-hub-* run format-view",
+    "format": "pnpm --filter docs-hub-* run format"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/node": "^22.13.13"
+  },
+  "packageManager": "pnpm@10.7.0"
+}

@@ -1,0 +1,25 @@
+{
+  "name": "docs-hub-shared-models",
+  "version": "0.1.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "unpkg": "./dist/index.global.js",
+  "jsdelivr": "./dist/index.global.js",
+  "browser": "./dist/index.global.js",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "scripts": {
+    "build": "tsx generate.ts && tsup"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "tsup": "^8.4.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5"
+  }
+}

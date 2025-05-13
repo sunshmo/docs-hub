@@ -1,0 +1,75 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - $HOME/docs_hub.sql:/docker-entrypoint-initdb.d/init.sql
+      - $HOME/mysql-data/data:/var/lib/mysql
+      - $HOME/mysql-data/log:/var/log/mysql
+      - $HOME/mysql-data/conf:/etc/mysql/conf.d
+    secrets:
+      - mysql_root_password
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+  redis:
+    image: redis
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    command: redis-server /usr/local/etc/redis/redis.conf
+  backend:
+    container_name: docs-hub-backend
+    restart: always
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "3456:3456"
+    env_file:
+      - ./backend/.env.local
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=${DB_HOST:-mysql}
+    depends_on:
+      - redis
+      - mysql
+    networks:
+      - app-network
+    volumes:
+      - ./backend:/app/backend
+      - ./shared-models:/app/shared-models
+      - /app/backend/node_modules
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./frontend:/app/frontend
+      - /app/backend/node_modules
+
+secrets:
+  mysql_root_password:
+    file: ./mysql_root_password.txt
+networks:
+  app-network:
+    driver: bridge

@@ -1,0 +1,10 @@
+{
+  "inputNotEmpty": "The input content cannot be empty",
+  "superSearch": {
+    "empty": "No data",
+    "btnSearch": "Super search...",
+    "search": "search",
+    "chat": "Chat",
+    "document": "Document"
+  }
+}
