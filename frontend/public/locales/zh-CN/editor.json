@@ -1,0 +1,6 @@
+{
+  "uploadTip": "可以上传的文件类型有：",
+  "fileExtDoc": "文档文件: TXT, MARKDOWN, PDF, HTML, XLSX, XLS, DOCX, CSV, EML, MSG, PPTX, PPT, XML, EPUB",
+  "fileExtAudio": "音频文件: MP3, M4A, WAV, WEBM, AMR",
+  "fileExtVideo": "视频文件: MP4, MOV, MPEG, MPGA"
+}

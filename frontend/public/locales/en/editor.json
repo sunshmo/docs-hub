@@ -1,0 +1,6 @@
+{
+  "uploadTip": "The file types that can be uploaded:",
+  "fileExtDoc": "Document file: TXT, MARKDOWN, PDF, HTML, XLSX, XLS, DOCX, CSV, EML, MSG, PPTX, PPT, XML, EPUB",
+  "fileExtAudio": "Audio file: MP3, M4A, WAV, WEBM, AMR",
+  "fileExtVideo": "Video file: MP4, MOV, MPEG, MPGA"
+}

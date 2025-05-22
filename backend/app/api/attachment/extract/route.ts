@@ -5,40 +5,33 @@ import { extract } from '@/app/api/attachment/extract/extract';
 import db from '@/lib/db';
 
 export async function POST(req: Request) {
-	let result: string;
 	try {
 		const json = await req.json();
-		const { id } = json;
+		const { ids } = json;
 
-		if (!id) {
-			return NextResponse.json(ResponseWrapper.error('id is required'));
+		if (!Array.isArray(ids)) {
+			return NextResponse.json(ResponseWrapper.error('ids is required'));
 		}
 
-		try {
-			const [rows] = await db.query(
-				`SELECT
-    a.id,a.filename,a.filepath,a.destName,a.userId,
-    u.username username
+		const [rows] = await db.query(
+			`SELECT
+	a.id,a.filename,a.filepath,a.destName,a.userId,
+	u.username username
 FROM attachment a
-LEFT JOIN user u ON a.userId = a.id
-WHERE a.id = ?`,
-				[id],
-			);
+LEFT JOIN user u ON a.userId = u.id
+WHERE a.id IN (?)`,
+			[ids],
+		);
 
-			const attachment = rows[0];
-
-			if (!attachment) {
-				return NextResponse.json(ResponseWrapper.error('File does not exist'));
-			}
-
+		let text = '';
+		// @ts-expect-error
+		for (const attachment of rows) {
 			// 提取内容
-			result = await extract(attachment);
-
-			return NextResponse.json(ResponseWrapper.success(result));
-		} catch (err) {
-			console.error('Error deleting crawler:', err);
-			return NextResponse.json(ResponseWrapper.error(err.message, false));
+			text += await extract(attachment);
+			text += '\n';
 		}
+
+		return NextResponse.json(ResponseWrapper.success(text));
 	} catch (err) {
 		return NextResponse.json(ResponseWrapper.error(err.message, false));
 	}

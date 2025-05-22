@@ -18,7 +18,7 @@ export default memo(function ({ prefix, id, className }: IProps) {
 		request('/api/attachment/extract', {
 			method: 'post',
 			body: JSON.stringify({
-				id,
+				ids: [id],
 			}),
 		})
 			.then((res) => res.json())
