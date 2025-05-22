@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
 	} catch (err) {
 		console.error('Error in user API:', err);
 		return NextResponse.json(
-			ResponseWrapper.error('Internal server error', false),
+			ResponseWrapper.error('Error in user AP', false),
 		);
 	}
 }

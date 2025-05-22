@@ -94,14 +94,7 @@ export function getCsrfTokenFromRequest(request: NextRequest): string | null {
 	const headerToken = request.headers.get('X-CSRF-Token');
 	if (headerToken) return headerToken;
 
-	// 2. 从formData获取（适用于表单提交）
-	if (request.headers.get('content-type')?.includes('multipart/form-data')) {
-		const formData = request.formData?.();
-		// @ts-expect-error
-		return formData?.get('csrf_token') as string | null;
-	}
-
-	// 3. 从JSON body获取（适用于API请求）
+	// 2. 从JSON body获取（适用于API请求）
 	try {
 		const body = request.json?.();
 		// @ts-expect-error
@@ -110,6 +103,6 @@ export function getCsrfTokenFromRequest(request: NextRequest): string | null {
 		// 不是JSON请求
 	}
 
-	// 4. 最后从cookie获取
+	// 3. 最后从cookie获取
 	return request.cookies.get('csrf_token')?.value || null;
 }

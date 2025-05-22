@@ -67,7 +67,7 @@ export async function GET(req: NextRequest) {
 		return response;
 	} catch (error) {
 		console.error('SSO callback error:', error);
-		return NextResponse.json(ResponseWrapper.error('Internal server error'), {
+		return NextResponse.json(ResponseWrapper.error('SSO callback error'), {
 			status: 500,
 			headers: { 'Content-Type': 'application/json' },
 		});

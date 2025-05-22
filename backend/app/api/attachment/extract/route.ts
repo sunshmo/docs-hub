@@ -10,7 +10,7 @@ export async function POST(req: Request) {
 		const json = await req.json();
 		const { id } = json;
 
-		if (id == null) {
+		if (!id) {
 			return NextResponse.json(ResponseWrapper.error('id is required'));
 		}
 
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     u.username username
 FROM attachment a
 LEFT JOIN user u ON a.userId = a.id
-WHERE id = ?`,
+WHERE a.id = ?`,
 				[id],
 			);
 

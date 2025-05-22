@@ -28,9 +28,11 @@ services:
     restart: always
     ports:
       - "6379:6379"
-    volumes:
-      - ./redis.conf:/usr/local/etc/redis/redis.conf
-    command: redis-server /usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_PASSWORD=redis123456
+    command: redis-server --requirepass redis123456
+    networks:
+      - app-network
   backend:
     container_name: docs-hub-backend
     restart: always
@@ -42,7 +44,6 @@ services:
     env_file:
       - ./backend/.env.local
     environment:
-      - NODE_ENV=development
       - DB_HOST=${DB_HOST:-mysql}
     depends_on:
       - redis
@@ -61,10 +62,9 @@ services:
       - "3000:3000"
     depends_on:
       - backend
-    environment:
-      - NODE_ENV=development
     volumes:
       - ./frontend:/app/frontend
+      - ./shared-models:/app/shared-models
       - /app/backend/node_modules
 
 secrets:

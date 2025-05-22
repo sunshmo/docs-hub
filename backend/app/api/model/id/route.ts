@@ -54,8 +54,8 @@ export async function POST(req: NextRequest) {
 			return NextResponse.json(ResponseWrapper.success(rows));
 		}
 	} catch (error) {
-		console.error('Database query error:', error);
-		return NextResponse.json(ResponseWrapper.error('Internal server error'), {
+		console.error('Model query error:', error);
+		return NextResponse.json(ResponseWrapper.error('Model query error'), {
 			status: 500,
 		});
 	}
